@@ -40,8 +40,22 @@ public class Mage extends Player {
     public Integer getHitsCount(){return hitsCount;}
     public Integer getAbilityRange(){return abilityRange;}
 
-    public String describe(){ return super.describe()+String.format("\t\tmana: %d/%d\t\tmana cost: %d\t\tspell power: %d\t\tability range: %d\t\t",getCurrentMana(),getManaPool(),getManaCost(), getSpellPower(), getAbilityRange());}
-
+    public String describe() {
+        String s = super.describe();
+        while (s.length() < 87)
+            s = s + " ";
+        s = s + "ability range: " + getAbilityRange();
+        while (s.length() < 107)
+            s = s + " ";
+        s = s + "mana: " + getCurrentMana() + "/" + getManaPool();
+        while (s.length() < 123)
+            s = s + " ";
+        s = s + "mana cost: " + getManaCost();
+        while (s.length() < 139)
+            s = s + " ";
+        s = s + "spell power: " + getSpellPower();
+        return s;
+    }
 
     //in each tick the mage's mana is increased by the player level in addition to his superClass actions
     public void tick(AreaVision av){

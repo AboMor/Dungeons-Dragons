@@ -34,7 +34,16 @@ public abstract class Player extends Unit {
     public Integer getPlayerLevel() {return playerLevel; }
     public void setPlayerLevel(int value){playerLevel=getPlayerLevel()+value;}
 
-    public String describe(){ return super.describe()+String.format("\t\texp: %s\t\tplayer Level: %d\t\t", getExperience(), getPlayerLevel());}
+    public String describe() {
+        String s = super.describe();
+        while (s.length() < 60)
+            s = s + " ";
+        s = s + "exp: " + getExperience();
+        while (s.length() < 69)
+            s = s + " ";
+        s = s + "player Level: " + getPlayerLevel();
+        return s;
+    }
 
     //in each tick the player recieve an input from the user and acts on it -ether movement or special ability
     public void tick(AreaVision av) {

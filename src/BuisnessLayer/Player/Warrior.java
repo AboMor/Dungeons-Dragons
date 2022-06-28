@@ -30,8 +30,16 @@ public class Warrior extends Player {
     public void setRemainingCooldown(int value){remainingCooldown=Math.max(0, getRemainingCooldown()-value);}
     public Integer getAbilityRange(){return abilityRange;}
 
-    public String describe(){ return super.describe()+String.format("\t\tcooldown: %d\t\tability range: %d\t\t",getRemainingCooldown(),getAbilityRange());}
-
+    public String describe() {
+        String s = super.describe();
+        while (s.length() < 87)
+            s = s + " ";
+        s = s + "ability range: " + getAbilityRange();
+        while (s.length() < 107)
+            s = s + " ";
+        s = s + "cooldown: " + getRemainingCooldown();
+        return s;
+    }
     //in each tick the warrior's cooldown is decreased by 1 in addition to his superClass actions
     public void tick(AreaVision av){
         setRemainingCooldown(1);

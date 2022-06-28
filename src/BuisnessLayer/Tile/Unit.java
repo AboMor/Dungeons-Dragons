@@ -57,7 +57,17 @@ public abstract class Unit extends Tile {
 
     //the descreption of the unit- supposed to be printed below the board.
     public String describe() {
-        return String.format("%s\t\tHealth: %d/%d\t\tAttack: %d\t\tDefense: %d", getName(), getHealthAmount(), getHealthPool(), getAttackPoints(), getDefensePoints());
+        String s = getName();
+        while (s.length()<16)
+            s=s+" ";
+        s=s+"Health: "+ getHealthAmount()+"/"+getHealthPool();
+        while (s.length()<34)
+            s=s+" ";
+        s=s+"Attack: "+ getAttackPoints();
+        while (s.length()<47)
+            s=s+" ";
+        s=s+"Defense: "+ getDefensePoints();
+        return s;
     }
 
 

@@ -30,8 +30,19 @@ public class Rogue extends Player {
     public void setCurrentEnergy(int value){energy.setCurrentAmount(value);}
     public Integer getAbilityRange(){return abilityRange;}
 
-    public String describe(){ return super.describe()+String.format("\t\tenergy: %d/%d\t\t cost: %d\t\tability range: %d\t\t",getCurrentEnergy(),getEnergyAmount(),getCost(),getAbilityRange());}
-
+    public String describe() {
+        String s = super.describe();
+        while (s.length() < 87)
+            s = s + " ";
+        s = s + "ability range: " + getAbilityRange();
+        while (s.length() < 107)
+            s = s + " ";
+        s = s + "energy: " + getCurrentEnergy() + "/" + getEnergyAmount();
+        while (s.length() < 123)
+            s = s + " ";
+        s = s + "cost: " + getCost();
+        return s;
+    }
 
     //in each tick the rogue's energy is increased by 10 in addition to his superClass actions
     public void tick(AreaVision av){
